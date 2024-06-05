@@ -16,7 +16,7 @@ const Covarage = () => {
               fontWeight={600}
               my="20px"
             >
-              Coverage area
+              Coverage Area
             </Typography>
           </Box>
           <Box>
