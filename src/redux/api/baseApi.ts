@@ -9,9 +9,10 @@ import {
 import { RootState } from "../store";
 import { logout, setUser } from "../features/auth/authSlice";
 import { toast } from "sonner";
+import { ErrorData } from "@/types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:5000/api",
+  baseUrl: "https://blooddonationbackendserver-root-dev.vercel.app/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -33,15 +34,18 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   // console.log(result);
 
   if (result?.error?.status === 404) {
-    const errorData = result;
+    const errorData = result as ErrorData;
     toast.error(errorData?.error?.data?.errorDetails);
   }
 
   if (result.error?.status === 401) {
-    const res = await fetch(`http://localhost:5000/api/refresh-token`, {
-      method: "POST",
-      credentials: "include",
-    });
+    const res = await fetch(
+      `https://blooddonationbackendserver-root-dev.vercel.app/api/refresh-token`,
+      {
+        method: "POST",
+        credentials: "include",
+      }
+    );
 
     const data = await res.json();
     // console.log(data);

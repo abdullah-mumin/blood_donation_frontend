@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { getBloodTypeLabel } from "@/app/(withDashboardLayout)/dashboard/user/profile/page";
-import { convertToTitleCase } from "@/utils/convertTitle";
 import { toast } from "sonner";
 import { MenuItem, Select } from "@mui/material";
 import {
@@ -11,6 +9,7 @@ import {
   useUpdateUserStatusMutation,
 } from "@/redux/features/user/userApi";
 import { useRouter } from "next/navigation";
+import { getBloodTypeLabel } from "@/types";
 
 export default function AdminTable({
   data,

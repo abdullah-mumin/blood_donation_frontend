@@ -7,6 +7,7 @@ import { TUser, setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { userLogin } from "@/services/actions/userLogin";
 import { storeUserInfo } from "@/services/authServices";
+import { CustomError, loginSchema, validationLoginSchema } from "@/types";
 import { verifyToken } from "@/utils/verifyToken";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
@@ -15,11 +16,6 @@ import { useRouter } from "next/navigation";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-
-export const validationSchema = z.object({
-  email: z.string().email("Please enter your valid email address."),
-  password: z.string().min(6, "Password nust be at least 6 characters."),
-});
 
 const LoginPage = () => {
   const router = useRouter();
@@ -50,7 +46,7 @@ const LoginPage = () => {
     } catch (error) {
       // console.log(error);
       if (typeof error === "object" && error !== null && "status" in error) {
-        const { status, data } = error;
+        const { status, data } = error as CustomError;
         if (status === 400 && data && !data.success) {
           // Handle password validation error
           const errorMessage = data.errorDetails;
@@ -104,11 +100,8 @@ const LoginPage = () => {
             <Box sx={{ width: "100%", maxWidth: "600px" }}>
               <BHForm
                 onSubmit={onsubmit}
-                resolver={zodResolver(validationSchema)}
-                defaultValues={{
-                  email: "",
-                  password: "",
-                }}
+                resolver={zodResolver(validationLoginSchema)}
+                defaultValues={loginSchema}
               >
                 <Box sx={{ py: 2, width: "100%", maxWidth: "600px" }}>
                   <BHInput

@@ -101,3 +101,65 @@ export type IGenericErrorMessage = {
   path: string | number;
   message: string;
 };
+
+interface ChangePasswordValues {
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
+export const changePasswordSchema: ChangePasswordValues = {
+  oldPassword: "",
+  newPassword: "",
+  confirmPassword: "",
+};
+
+interface RegisterValues {
+  name: string;
+  location: string;
+  bloodType: string;
+  email: string;
+  password: string;
+  isBloodDonate: boolean;
+}
+
+export const registerSchema: RegisterValues = {
+  name: "",
+  location: "",
+  bloodType: "",
+  email: "",
+  password: "",
+  isBloodDonate: false,
+};
+
+export const getBloodTypeLabel = (value: string) => {
+  const bloodType = BloodType.find((type) => type.value === value);
+  return bloodType ? bloodType.label : value;
+};
+
+interface LoginValues {
+  email: string;
+  password: string;
+}
+
+export const loginSchema: LoginValues = {
+  email: "",
+  password: "",
+};
+
+export interface CustomError {
+  status: number;
+  data?: {
+    success?: boolean;
+    errorDetails?: string;
+  };
+}
+
+export interface ErrorData {
+  error: {
+    status: number;
+    data?: {
+      errorDetails?: string;
+    };
+  };
+}

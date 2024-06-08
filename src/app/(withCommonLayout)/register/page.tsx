@@ -3,7 +3,7 @@
 import BHForm from "@/components/Forms/BHForm";
 import BHInput from "@/components/Forms/BHInput";
 import BHSelect from "@/components/Forms/BHSelect";
-import { BloodType } from "@/types";
+import { BloodType, registerSchema, validationRegisterSchema } from "@/types";
 import {
   Box,
   Button,
@@ -18,46 +18,13 @@ import { useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { userRegistartion } from "@/services/actions/userRegistration";
 import { toast } from "sonner";
-import { userLogin } from "@/services/actions/userLogin";
-import { storeUserInfo } from "@/services/authServices";
 import { useRouter } from "next/navigation";
 import {
   useLoginMutation,
   useRegisterMutation,
 } from "@/redux/features/auth/authApi";
 import { useAppDispatch } from "@/redux/hooks";
-import { verifyToken } from "@/utils/verifyToken";
-import { setUser } from "@/redux/features/auth/authSlice";
-
-const bloodTypeValues = BloodType.map((type) => type.value);
-
-export const userValidationSchema = z.object({
-  name: z.string().min(1, "Please enter your name."),
-  location: z.string().min(1, "Please enter your location."),
-  bloodType: z
-    .string()
-    .refine(
-      (val) => bloodTypeValues.includes(val),
-      "Please enter a valid blood type."
-    ),
-  email: z.string().email("Please enter your valid email address."),
-  password: z
-    .string()
-    .min(8, "Password must be at least 8 characters long.")
-    .max(100, "Password must be no more than 100 characters long."),
-  isBloodDonate: z.boolean(),
-});
-
-export const defaultValues = {
-  name: "",
-  location: "",
-  bloodType: "",
-  email: "",
-  password: "",
-  isBloodDonate: false,
-};
 
 const RegistrationPage = () => {
   const router = useRouter();
@@ -71,6 +38,7 @@ const RegistrationPage = () => {
   };
   const onsubmit = async (values: FieldValues): Promise<boolean> => {
     // console.log(values);
+    const toastId = toast.loading("Register user. Please wait...");
     try {
       let success = true;
       const userInfo = {
@@ -85,18 +53,11 @@ const RegistrationPage = () => {
       const res = await registration(userInfo).unwrap();
       // console.log(res);
       if (res?.statusCode === 201) {
-        toast.success(res?.message);
+        toast.success("Registration successful", {
+          id: toastId,
+          duration: 2000,
+        });
         router.push("/login");
-        // const result = await login({
-        //   password: values.password,
-        //   email: values.email,
-        // }).unwrap();
-        // if (result?.statusCode === 200) {
-        //   const user = verifyToken(res.data.accessToken);
-        //   dispatch(setUser({ user: user, token: res.data.accessToken }));
-        //   router.push("/");
-        //   return true;
-        // }
         success = true;
         return success;
       }
@@ -139,8 +100,8 @@ const RegistrationPage = () => {
             <Box sx={{ width: "100%", maxWidth: "600px" }}>
               <BHForm
                 onSubmit={onsubmit}
-                resolver={zodResolver(userValidationSchema)}
-                defaultValues={defaultValues}
+                resolver={zodResolver(validationRegisterSchema)}
+                defaultValues={registerSchema}
               >
                 <Box sx={{ pb: 1, width: "100%", maxWidth: "600px" }}>
                   <BHInput

@@ -1,6 +1,5 @@
 "use client";
 
-import { getBloodTypeLabel } from "@/app/(withDashboardLayout)/dashboard/user/profile/page";
 import assets from "@/assets";
 import BHDatePicker from "@/components/Forms/BHDatePicker";
 import BHForm from "@/components/Forms/BHForm";
@@ -8,6 +7,7 @@ import BHInput from "@/components/Forms/BHInput";
 import { useSingleDonorQuery } from "@/redux/features/user/donorAPI";
 import { useCreateDonorRequestMutation } from "@/redux/features/user/requestApi";
 import { useAppSelector } from "@/redux/hooks";
+import { getBloodTypeLabel } from "@/types";
 import { convertToTitleCase } from "@/utils/convertTitle";
 import { dateFormatter } from "@/utils/dateFormatter";
 import {

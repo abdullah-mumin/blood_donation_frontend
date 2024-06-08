@@ -1,5 +1,5 @@
-import { getBloodTypeLabel } from "@/app/(withDashboardLayout)/dashboard/user/profile/page";
 import assets from "@/assets";
+import { getBloodTypeLabel } from "@/types";
 import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

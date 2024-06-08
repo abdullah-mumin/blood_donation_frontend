@@ -24,36 +24,6 @@ import { z } from "zod";
 
 const bloodTypeValues = BloodType.map((type) => type.value);
 
-export const userValidationSchema = z.object({
-  phoneNumber: z
-    .string()
-    .min(
-      1,
-      "Phone number must be exactly 11 digits long and contain only digits"
-    ),
-  numberOfBag: z.string().min(1, "Number of bag must be required."),
-  bloodType: z
-    .string()
-    .refine(
-      (val) => bloodTypeValues.includes(val),
-      "Please enter a valid blood type."
-    ),
-  dateOfDonation: z.string().min(1, "Date of donation must be a date"),
-  password: z
-    .string()
-    .min(8, "Password must be at least 8 characters long.")
-    .max(100, "Password must be no more than 100 characters long."),
-  reason: z.string().min(1, "Reason must be a string"),
-});
-
-export const defaultValues = {
-  phoneNumber: "",
-  bloodType: "",
-  numberOfBag: "",
-  dateOfDonation: "",
-  reason: "",
-};
-
 const BloodRequestPage = () => {
   const router = useRouter();
   const [reason, setReason] = useState<string>("");

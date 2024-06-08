@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Information about Blood Hero
 
-## Getting Started
+The Blood Donation website is a user-centric platform designed to facilitate blood donations by connecting donors with recipients. It includes features for searching and filtering donors, detailed donor profiles, user account management, and administrative tools for overseeing site activity and user accounts. The aim is to promote and streamline the process of blood donation, ensuring that those in need can easily find willing donors and that the donation process is secure, efficient, and user-friendly.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- User registration and login.
+- Search for blood donors by blood group, availability and location.
+- Send blood request and View all blood requests
+- User profile management.
+- Donation history and own blood requests.
+- Admin dashboard for managing users and update users status and role
+- Responsive design for mobile, tablet and web.
+
+## Technology
+
+- Typescript
+- Next.js
+- MUI
+- Redux-toolkit
+- Redux-persist
+- React-hook-form
+- Zod
+- Sonner
+
+## Getting started:
+
+- Clone the repository
+
+```
+git clone https://github.com/abdullah-mumin/blood_donation_frontend.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+cd blood_donation_frontend
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+# Create a .env file and do the following
 
-## Learn More
+NEXT_PUBLIC_BACKEND_API_URL=http://localhost:5000/api
 
-To learn more about Next.js, take a look at the following resources:
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Build and run the project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+npm run build
+npm run dev
+```
 
-## Deploy on Vercel
+### Live server link
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Front-end Live Server](https://blood-donation-frontend-sigma.vercel.app/)
+- [Back-end Live Server](https://blooddonationbackendserver-root-dev.vercel.app/)

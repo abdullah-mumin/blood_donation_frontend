@@ -4,22 +4,13 @@ import BHForm from "@/components/Forms/BHForm";
 import BHInput from "@/components/Forms/BHInput";
 import { useUserPasswordChangeMutation } from "@/redux/features/user/profileApi";
 import { useAppSelector } from "@/redux/hooks";
-import { getUserInfo } from "@/services/authServices";
+import { changePasswordSchema, validationChangePasswordSchema } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
-
-export const validationSchema = z.object({
-  oldPassword: z.string().min(6, "Please enter correct old password."),
-  newPassword: z.string().min(6, "New Password nust be at least 6 characters."),
-  confirmPassword: z
-    .string()
-    .min(6, "New Password nust be at least 6 characters."),
-});
 
 const ChangePassword = () => {
   const router = useRouter();
@@ -113,12 +104,8 @@ const ChangePassword = () => {
             <Box sx={{ width: "100%", maxWidth: "600px" }}>
               <BHForm
                 onSubmit={onsubmit}
-                resolver={zodResolver(validationSchema)}
-                defaultValues={{
-                  oldPassword: "",
-                  newPassword: "",
-                  confirmPassword: "",
-                }}
+                resolver={zodResolver(validationChangePasswordSchema)}
+                defaultValues={changePasswordSchema}
               >
                 <Box sx={{ pb: 1, width: "100%", maxWidth: "600px" }}>
                   <BHInput

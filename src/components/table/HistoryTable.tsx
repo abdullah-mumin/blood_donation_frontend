@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { getBloodTypeLabel } from "@/app/(withDashboardLayout)/dashboard/user/profile/page";
+import { getBloodTypeLabel } from "@/types";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", flex: 1 },

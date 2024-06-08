@@ -1,7 +1,7 @@
-import { getBloodTypeLabel } from "@/app/(withDashboardLayout)/dashboard/user/profile/page";
 import assets from "@/assets";
 import { useAcceptBloodRequestMutation } from "@/redux/features/user/requestApi";
 import { useAppSelector } from "@/redux/hooks";
+import { getBloodTypeLabel } from "@/types";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

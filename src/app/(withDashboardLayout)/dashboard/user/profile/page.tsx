@@ -5,17 +5,12 @@ import { setCurrentUser } from "@/redux/features/auth/authSlice";
 import { useGetProfileQuery } from "@/redux/features/user/profileApi";
 import { useAppSelector } from "@/redux/hooks";
 import { getUserInfo } from "@/services/authServices";
-import { BloodType } from "@/types";
+import { BloodType, getBloodTypeLabel } from "@/types";
 import { convertToTitleCase } from "@/utils/convertTitle";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-export const getBloodTypeLabel = (value: string) => {
-  const bloodType = BloodType.find((type) => type.value === value);
-  return bloodType ? bloodType.label : value;
-};
 
 const ProfilePage = () => {
   const [userRole, setUserRole] = useState("");

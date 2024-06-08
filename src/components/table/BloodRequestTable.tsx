@@ -2,11 +2,11 @@
 
 import * as React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { getBloodTypeLabel } from "@/app/(withDashboardLayout)/dashboard/user/profile/page";
 import { toast } from "sonner";
 import { useAcceptBloodRequestMutation } from "@/redux/features/user/requestApi";
 import { useRouter } from "next/navigation";
 import { MenuItem, Select } from "@mui/material";
+import { getBloodTypeLabel } from "@/types";
 
 export default function BloodRequestTable({
   data,
